@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joyful with Josie | Planning Quiz App</title>
+  <style>
+    :root {
+      --bg: #0b223b;
+      --card: #102846;
+      --accent: #cfe4ff;
+      --text: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #cfe4ff, #0b223b);
+      font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text);
+    }
+    .app {
+      width: min(480px, 95vw);
+      background-color: var(--card);
+      border-radius: 1.2rem;
+      padding: 1.6rem 1.7rem 1.8rem;
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+    h1 {
+      margin-top: 0;
+      text-align: center;
+      font-size: 1.7rem;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #cbd5f5;
+      margin-bottom: 1.2rem;
+    }
+    .q {
+      margin-bottom: 1rem;
+    }
+    .q-title {
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      font-size: 0.95rem;
+    }
+    .options {
+      display: grid;
+      gap: 0.4rem;
+    }
+    button.opt {
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--text);
+      padding: 0.45rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      text-align: left;
+      cursor: pointer;
+    }
+    button.opt.selected {
+      border-color: var(--accent);
+      background: rgba(207, 228, 255, 0.16);
+    }
+    .actions {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .btn-main {
+      flex: 1;
+      border: none;
+      background: var(--accent);
+      color: #102846;
+      padding: 0.6rem 0.8rem;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .btn-secondary {
+      border: none;
+      background: transparent;
+      color: #cbd5f5;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .result {
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.5);
+      display: none;
+    }
+    .result-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+    }
+    .result-sub {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+    }
+    .back-links {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    .back-links a {
+      color: var(--accent);
+      text-decoration: none;
+      margin: 0 0.3rem;
+    }
+    .back-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>Which Planning Package Fits You?</h1>
+    <p class="subtitle">
+      Answer a few quick questions to see which Joyful with Josie package is the best match.
+    </p>
+
+  
+    <div class="q" data-question="0">
+      <div class="q-title">1. How far away is your wedding date?</div>
+      <div class="options">
+        <button class="opt" data-package="six">About 6 months or more.</button>
+        <button class="opt" data-package="three">Around 3–4 months away.</button>
+        <button class="opt" data-package="dayof">Less than 2 months / very soon.</button>
+      </div>
+    </div>
+
+   
+    <div class="q" data-question="1">
+      <div class="q-title">2. How much do you enjoy handling details?</div>
+      <div class="options">
+        <button class="opt" data-package="dayof">I love planning and have done most of it already.</button>
+        <button class="opt" data-package="three">I’ve done a lot, but big-picture help would be nice.</button>
+        <button class="opt" data-package="six">I’d love a partner to walk through it with me.</button>
+      </div>
+    </div>
+
+   
+    <div class="q" data-question="2">
+      <div class="q-title">3. How busy is your schedule right now?</div>
+      <div class="options">
+        <button class="opt" data-package="six">Very busy—school, work, or life is full.</button>
+        <button class="opt" data-package="three">A medium amount of busy.</button>
+        <button class="opt" data-package="dayof">I have time and just need day-of help.</button>
+      </div>
+    </div>
+
+    
+    <div class="q" data-question="3">
+      <div class="q-title">4. What feels most stressful about your wedding?</div>
+      <div class="options">
+        <button class="opt" data-package="six">All the moving parts for the next few months.</button>
+        <button class="opt" data-package="three">Final details and making sure nothing is missed.</button>
+        <button class="opt" data-package="dayof">The actual wedding day running smoothly.</button>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-main" id="seeMatch">See my match</button>
+      <button class="btn-secondary" id="resetQuiz">Clear answers</button>
+    </div>
+
+    <div class="result" id="result">
+      <div class="result-title" id="resultTitle"></div>
+      <div class="result-sub" id="resultText"></div>
+    </div>
+
+    <div class="back-links">
+      <a href="scratch.html">← Back to Inspiration (Scratch Page)</a>
+      <a href="index.html">Return to Main Wedding Site</a>
+    </div>
+  </div>
+
+  <script>
+    const selections = {}; 
+    const buttons = document.querySelectorAll(".opt");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const qDiv = btn.closest(".q");
+        const qIndex = qDiv.getAttribute("data-question");
+
+        
+        qDiv.querySelectorAll(".opt").forEach(b => b.classList.remove("selected"));
+
+        btn.classList.add("selected");
+        selections[qIndex] = btn.dataset.package;
+      });
+    });
+
+    const packageInfo = {
+      six: {
+        title: "6-Month Agreement Plan",
+        text: "You’d benefit most from the 6-Month Agreement Plan. You’re juggling a lot and want a partner to help guide decisions, coordinate vendors, and build out a detailed timeline over the final stretch of planning."
+      },
+      three: {
+        title: "3-Month Plan",
+        text: "The 3-Month Plan sounds perfect for you. You’ve already done a good amount of planning, but you’d love structured support for the last few months, plus a coordinator to pull everything together."
+      },
+      dayof: {
+        title: "Day-Of Coordination",
+        text: "You’re likely a strong DIY planner who just wants peace of mind on the wedding day itself. The Day-Of Coordination package keeps things organized so you can relax and enjoy every moment."
+      }
+    };
+
+    document.getElementById("seeMatch").addEventListener("click", () => {
+      const totalQuestions = 4;
+      if (Object.keys(selections).length < totalQuestions) {
+        alert("Please answer all of the questions first.");
+        return;
+      }
+
+      const counts = { six: 0, three: 0, dayof: 0 };
+      Object.values(selections).forEach(pkg => counts[pkg]++);
+
+      let best = "six";
+      let bestScore = -1;
+      for (const key in counts) {
+        if (counts[key] > bestScore) {
+          bestScore = counts[key];
+          best = key;
+        }
+      }
+
+      const info = packageInfo[best];
+      document.getElementById("resultTitle").textContent = info.title;
+      document.getElementById("resultText").textContent = info.text;
+      document.getElementById("result").style.display = "block";
+    });
+
+    document.getElementById("resetQuiz").addEventListener("click", () => {
+      Object.keys(selections).forEach(k => delete selections[k]);
+      buttons.forEach(b => b.classList.remove("selected"));
+      document.getElementById("result").style.display = "none";
+    });
+  </script>
+</body>
+</html>

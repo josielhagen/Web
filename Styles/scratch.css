@@ -1,0 +1,191 @@
+/* Overall body with custom background color/image */
+body {
+  margin: 0;
+  font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #1f2933;
+  background:
+    linear-gradient(135deg, rgba(207, 228, 255, 0.8), rgba(251, 246, 237, 0.95));
+  /* if you later add an image, you can do:
+     , url("wedding-background.jpg");
+  */
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Top bar */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.top-bar-left {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-script {
+  font-family: "Great Vibes", cursive;
+  font-size: 1.7rem;
+  color: #123055;
+}
+
+.brand-small {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.top-bar-right a {
+  margin-left: 0.75rem;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: #374151;
+}
+
+.top-bar-right a:hover {
+  text-decoration: underline;
+}
+
+/* Header hero area */
+.hero-area {
+  padding: 1.8rem 1rem 1.2rem;
+  text-align: center;
+}
+
+.hero-text {
+  max-width: 750px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.92);
+  border-radius: 1rem;
+  padding: 1.4rem 1.6rem;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.2);
+}
+
+.hero-text h1 {
+  margin: 0 0 0.5rem;
+  color: #123055;
+}
+
+/* Three-column layout */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.3fr) minmax(0, 1.2fr);
+  gap: 1rem;
+  padding: 0 1rem 2rem;
+}
+
+.column {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 0.9rem;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15);
+}
+
+.column h2 {
+  margin-top: 0.1rem;
+  color: #123055;
+}
+
+.small-note {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* Lists */
+.planning-list {
+  padding-left: 1.3rem;
+}
+
+.planning-list > li {
+  margin-bottom: 0.4rem;
+}
+
+.planning-list ul {
+  margin-top: 0.3rem;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+}
+
+.flow-list {
+  padding-left: 1.1rem;
+}
+
+.quick-links {
+  padding-left: 1.1rem;
+}
+
+/* Image card */
+.photo-card {
+  margin-top: 0.8rem;
+}
+
+.photo-card img {
+  width: 100%;
+  border-radius: 0.75rem;
+  display: block;
+}
+
+.photo-card figcaption {
+  font-size: 0.85rem;
+  color: #4b5563;
+  margin-top: 0.3rem;
+}
+
+/* Video and Tableau wrappers */
+.video-wrapper iframe {
+  width: 100%;
+  height: 210px;
+  border: none;
+  border-radius: 0.8rem;
+}
+
+.tableau-wrapper {
+  margin-top: 0.6rem;
+  background-color: #eef2ff;
+  border-radius: 0.8rem;
+  padding: 0.7rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+.scratch-footer {
+  text-align: center;
+  padding: 1rem 0.5rem 1.3rem;
+  font-size: 0.85rem;
+  color: #374151;
+}
+
+.scratch-footer a {
+  color: #123055;
+  text-decoration: none;
+}
+
+.scratch-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Links */
+a {
+  color: #123055;
+}
+
+a:hover {
+  color: #0c223b;
+}
+
+/* Responsive */
+@media (max-width: 950px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
